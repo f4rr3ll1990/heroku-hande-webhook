@@ -20,7 +20,7 @@ router.post('/test',(request,response) => {
 	headers: { 'cache-control': 'no-cache',
 	'x-apikey': 'f597576043e3cd21d1e6755024f8fe4821e3b',
 	'content-type': 'application/json' },
-	body: { id: body.result.id, text: body.result.rewrite },
+	body: { id: request.body.result.id, text: request.body.result.rewrite },
 	json: true
 };
 
