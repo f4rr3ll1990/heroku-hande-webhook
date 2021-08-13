@@ -16,20 +16,41 @@ router.post('/test',(request,response) => {
 	console.log(request.body);
 	response.end("success!!!");
 
-	var options = { method: 'POST',
-	url: 'https://f4rr3ll-98fc.restdb.io/rest/wikihow',
-	headers: { 'cache-control': 'no-cache',
-	'x-apikey': 'f597576043e3cd21d1e6755024f8fe4821e3b',
-	'content-type': 'application/json' },
-	body: { id: request.body.result.id, text: request.body.result.rewrite },
-	json: true
-};
+	let config = {
+		headers: {
+			'cache-control': 'no-cache',
+			'x-apikey': 'f597576043e3cd21d1e6755024f8fe4821e3b',
+			'content-type': 'application/json'
+		}
+	}
 
-axios(options, function (error, response, body) {
-	if (error) throw new Error(error);
+	let data = {
+		id: request.body.result.id,
+		text: request.body.result.rewrite
+	}
+	console.log(request.body.result.id)
+	axios.post('https://f4rr3ll-98fc.restdb.io/rest/wikihow', data, config).then((data) => {console.log(data)})
 
-	console.log(body);
-});
+	// var options = {
+	// 	method: 'POST',
+	// 	url: 'https://f4rr3ll-98fc.restdb.io/rest/wikihow',
+	// 	headers: {
+	// 		'cache-control': 'no-cache',
+	// 		'x-apikey': 'f597576043e3cd21d1e6755024f8fe4821e3b',
+	// 		'content-type': 'application/json'
+	// 	},
+	// 	body: {
+	// 		id: request.body.result.id,
+	// 		text: request.body.result.rewrite
+	// 	},
+	// 	json: true
+	// };
+
+	// axios(options, function (error, response, body) {
+	// 	if (error) throw new Error(error);
+
+	// 	console.log(body);
+	// });
 });
 
 // add router in the Express app.
