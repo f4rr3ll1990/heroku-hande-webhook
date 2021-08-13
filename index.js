@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const request = require("request");
+const axios = require("axios");
 
 const router = express.Router();
 const app = express();
@@ -15,6 +15,7 @@ router.post('/test',(request,response) => {
 	//To access POST variable use req.body()methods.
 	console.log(request.body);
 	response.end("success!!!");
+
 	var options = { method: 'POST',
 	url: 'https://f4rr3ll-98fc.restdb.io/rest/wikihow',
 	headers: { 'cache-control': 'no-cache',
@@ -24,7 +25,7 @@ router.post('/test',(request,response) => {
 	json: true
 };
 
-request(options, function (error, response, body) {
+axios(options, function (error, response, body) {
 	if (error) throw new Error(error);
 
 	console.log(body);
