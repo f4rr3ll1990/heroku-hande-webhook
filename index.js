@@ -12,6 +12,7 @@ router.post('/test',(request,response) => {
 //code to perform particular action.
 //To access POST variable use req.body()methods.
 console.log(request.body);
+response.end("success!!!");
 });
 
 // add router in the Express app.
